@@ -28,6 +28,8 @@ public class ApplyForCardService {
         this.creditCardRepository = creditCardRepository;
     }
 
+//  TODO    though using transactional there is a problem in modifying 2 different distributed system in one transaction i.e. if one of them goes down
+//    after updating another say after publishing message if db goes down or msg bus goes down after commit message to db (which needs to be solved)
     @Transactional
     public Optional<CreditCard> apply(String pesel) {
         if (bornBeforeSeventies(pesel)) {

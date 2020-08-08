@@ -7,6 +7,9 @@ import io.pillopl.testablearch.ex3.model.CardGranted
 import io.pillopl.testablearch.ex3.model.CreditCardRepository
 import spock.lang.Specification
 
+// TODO currently this test will pass even if there is no implmentation of DomainEventsPublisher, since we are testing ApplyForCardService in isolation
+// but the application will not come up since there will be no bean of type DomainEventsPublisher so its better to create INTEGRATION TEST which will take care
+// of whole app and ensure the application will run if test passed.
 class ApplyForCardWithEventUnitTest extends Specification {
 
 //    stub since we can specify what interactions to this should return
