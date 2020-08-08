@@ -1,2 +1,4 @@
-1. Implement those two tests (regularPatronCannotHoldRestrictedBooks and researcherPatronCanHoldRestrictedBooks) in BlackBoxScenarios.java. Feel free to use methods already provide in that class - lot of useful stuff there
+1. Implement those two tests (regularPatronCannotHoldRestrictedBooks and researcherPatronCanHoldRestrictedBooks) in BlackBoxScenarios.java.
+
+ Feel free to use methods already provide in that class - lot of useful stuff there
 

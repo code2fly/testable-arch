@@ -8,6 +8,7 @@ package io.pillopl.testablearch.ex1;
 
 import org.springframework.stereotype.Component;
 
+@Component
 public class RentCarService {
 
     private final CustomerRepository customerRepository;
@@ -19,11 +20,13 @@ public class RentCarService {
     }
 
     void rentDefaultCarFor(Long customerId) {
+        // load data but has a decision
         Customer customer = customerRepository.findById(customerId).orElseThrow(IllegalArgumentException::new);
+        // calculate invariant/apply rules here, and since there is a state change it should happen inside that
+        boolean rentingAnotherCarAllowed = customer.rentAnotherCar();
 
-        //can only have up to 3 rentals
-        if (customer.getNumberOfRentals() < 3) {
-            customer.setNumberOfRentals(customer.getNumberOfRentals() + 1);
+        //process
+        if (rentingAnotherCarAllowed) {
             //if managed to rent - send a nice e-mail
             //what happens if database crashes after sending an e-mail?
             emailService.sendEmail(customer.getName(), "You got it");
@@ -34,5 +37,7 @@ public class RentCarService {
             //do I want to test that?
         }
     }
+
+
 
 }

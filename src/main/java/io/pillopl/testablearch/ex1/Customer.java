@@ -47,4 +47,15 @@ public class Customer {
         return numberOfRentals;
     }
 
+//    good practise of Command Query Separation (not CQRS - command query responsibility segregation  btw)
+//     here boolean just signifies that the command was succesfully executed or not so don't be dogmatic about it being void
+    public boolean rentAnotherCar() {
+        if (getNumberOfRentals() < 3) {
+            this.setNumberOfRentals(numberOfRentals+1);
+            return true;
+        }
+        return false;
+    }
+
+
 }
