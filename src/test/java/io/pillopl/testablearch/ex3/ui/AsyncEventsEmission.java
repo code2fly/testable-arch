@@ -42,11 +42,15 @@ class AsyncEventsEmission {
 
         //expect
         //..
+        Awaitility.await()
+                .atMost(Duration.FIVE_SECONDS)
+                .until(() -> emittedEventWas("card-granted"));
     }
 
     boolean emittedEventWas(String eventName) {
         //.. how to check that?
-        return false;
+        Message<?> event = events.poll();
+        return event != null &&  ((String)event.getPayload()).contains(eventName);
     }
 
     @Test
@@ -57,5 +61,7 @@ class AsyncEventsEmission {
         //expect
         //..
     }
+
+
 
 }

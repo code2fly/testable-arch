@@ -17,7 +17,7 @@ import javax.transaction.Transactional;
 /**
  * @author Jakub Pilimon
  */
-@Primary
+//@Primary
 @Component
 public class FromDBDomainEventPublisher implements DomainEventsPublisher {
 
@@ -40,6 +40,7 @@ public class FromDBDomainEventPublisher implements DomainEventsPublisher {
         }
     }
 
+    // this gives us atleast once delivery
     @Scheduled(fixedRate = 2000)
     @Transactional
     public void publishExternally() {
