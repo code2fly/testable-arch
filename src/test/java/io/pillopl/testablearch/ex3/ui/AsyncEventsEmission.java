@@ -41,10 +41,14 @@ class AsyncEventsEmission {
         cardApplicationController.applyForCard(new CardApplication("70345678"));
 
         //expect
-        //..
-        Awaitility.await()
+
+        Awaitility
+                .await()
                 .atMost(Duration.FIVE_SECONDS)
-                .until(() -> emittedEventWas("card-granted"));
+                .until(() -> {
+                    Message<?> msg = events.poll();
+                    return msg != null && msg.getHeaders().containsValue("card-granted");
+                });
     }
 
     boolean emittedEventWas(String eventName) {
